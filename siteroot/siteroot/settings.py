@@ -11,9 +11,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -37,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    #local
+    'observations_register.apps.ObservationsRegisterConfig',
 ]
 
 MIDDLEWARE = [
@@ -130,3 +134,15 @@ STATIC_URL = '/static/'
 
 # The model to use to represent a User.
 AUTH_USER_MODEL = 'auth.User'
+
+
+# The named URL pattern where requests are redirected for index page.
+INDEX_URL = 'index'
+
+# The named URL pattern where requests are redirected for login.
+# Used in login_required decorator.
+LOGIN_URL = 'account-login'
+
+# The named URL pattern where requests are redirected after login.
+# Used in anonymous_required decorator and LoginView.
+LOGIN_REDIRECT_URL = 'profile-redirect'
