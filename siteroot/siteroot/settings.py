@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'siteroot.wsgi.application'
 DATABASES = {
 'default': {
 'ENGINE': 'django.db.backends.postgresql',
-'NAME': 'djbase',
+'NAME': 'observations_register',
 'USER': 'djuser',
 'PASSWORD': 'enotiki52',
 'HOST': 'localhost',
