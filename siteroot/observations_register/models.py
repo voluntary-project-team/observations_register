@@ -3,20 +3,22 @@ from django.db import models
 
 class Patient(models.Model):
     GENDER_CHOICES = (('М', 'Мужской'), ('Ж', 'Женский'))
+    EYES_CHOICES = (('ГОЛУБОЙ', 'Голубой'), ('СЕРЫЙ', 'Серый'),
+                    ('ЗЕЛЕНЫЙ', 'Зеленый'), ('КАРИЙ', 'Карий'))
+    HAIR_CHOICES = (('БЛОНДИН', 'Блондин'), ('РЫЖИЙ', 'Рыжий'),
+                    ('ТЕМНЫЙ', 'Темный'), ('ЧЕРНЫЙ', 'Черный'))
 
     fullname = models.CharField(max_length=120)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     birthday = models.DateField(auto_now=False, auto_now_add=False)
+    eyes_col = models.CharField(max_length=7, choices=EYES_CHOICES, default='ГОЛУБОЙ')
+    hair_col = models.CharField(max_length=7, choices=HAIR_CHOICES, default='БЛОНДИН')
 
     def __str__(self):
         return self.fullname
 
 
 class Questionnaire(models.Model):
-    EYES_CHOICES = (('ГОЛУБОЙ', 'Голубой'), ('СЕРЫЙ', 'Серый'),
-                    ('ЗЕЛЕНЫЙ', 'Зеленый'), ('КАРИЙ', 'Карий'))
-    HAIR_CHOICES = (('БЛОНДИН', 'Блондин'), ('РЫЖИЙ', 'Рыжий'),
-                    ('ТЕМНЫЙ', 'Темный'), ('ЧЕРНЫЙ', 'Черный'))
     FRECKLES_CHOICES = (('МНОГО', 'Много'), ('УМЕРЕННО', 'Умеренно'),
                         ('ЕДИНИЧНЫЕ', 'Единичные'), ('НЕТ', 'Нет'))
     SKIN_CHOICES = (('ОЧЕНЬ БЕЛЫЙ', 'Очень белый'), ('БЕЛЫЙ', 'Белый'),
@@ -44,8 +46,6 @@ class Questionnaire(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     weight = models.PositiveSmallIntegerField()
     growth = models.PositiveSmallIntegerField()
-    eyes_col = models.CharField(max_length=7, choices=EYES_CHOICES)
-    hair_col = models.CharField(max_length=7, choices=HAIR_CHOICES)
     freckles = models.CharField(max_length=9, choices=FRECKLES_CHOICES)
     skin_col = models.CharField(max_length=16, choices=SKIN_CHOICES)
     redness_during_sunburn = models.BooleanField()
