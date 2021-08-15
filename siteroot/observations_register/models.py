@@ -11,8 +11,8 @@ class Patient(models.Model):
     fullname = models.CharField(max_length=120)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     birthday = models.DateField(auto_now=False, auto_now_add=False)
-    eyes_col = models.CharField(max_length=7, choices=EYES_CHOICES, default='ГОЛУБОЙ')
-    hair_col = models.CharField(max_length=7, choices=HAIR_CHOICES, default='БЛОНДИН')
+    eyes_col = models.CharField(max_length=7, choices=EYES_CHOICES)
+    hair_col = models.CharField(max_length=7, choices=HAIR_CHOICES)
 
     def __str__(self):
         return self.fullname
