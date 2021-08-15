@@ -82,10 +82,9 @@ DATABASES = {
 'ENGINE': 'django.db.backends.postgresql',
 'NAME': 'djbase',
 'USER': 'djuser',
-'PASSWORD': '0',
+'PASSWORD': 'enotiki52',
 'HOST': 'localhost',
 'PORT': '5432'
-
 }
 }
 
