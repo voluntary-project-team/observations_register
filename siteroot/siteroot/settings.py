@@ -144,4 +144,12 @@ LOGIN_URL = 'account-login'
 
 # The named URL pattern where requests are redirected after login.
 # Used in anonymous_required decorator and LoginView.
-LOGIN_REDIRECT_URL = 'profile-redirect'
+LOGIN_REDIRECT_URL = 'patients-redirect'
+
+# The names URL pattern used by django built-in LogoutView.
+LOGOUT_REDIRECT_URL = 'index'
+
+STRONGHOLD_PUBLIC_NAMED_URLS = (
+    'index',
+    'account-login',
+)

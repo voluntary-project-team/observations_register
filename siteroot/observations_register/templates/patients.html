@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} Список пациентов {% endblock %}
+
+
+{% block content %}
+<div class="container">
+
+   <h3>Список пациентов:</h3>
+   {% for patient in patients %}
+   <table>
+      <tr>
+         <td><h4>{{ patient.fullname }}</h4></td>
+         <td>
+            {% for group_for in request.user.groups.all %}
+               {% if group_for.name == 'Operators' %}
+                  <a href="" class='btn btn-blue'>Изменить</a>
+                  <a href="" class='btn btn-blue'>Удалить</a>
+               {% elif group_for.name == 'Analysts' %}
+                  <a href="" class='btn btn-blue'>Подробнее</a>
+               {% endif %}
+            {% endfor %}
+         </td>
+      </tr>
+   </table>
+   {% endfor %}
+
+   {% for group_for in request.user.groups.all %}
+      {% if group_for.name == 'Operators' %}
+         <a href="" class='btn btn-blue'>Добавить нового пациента</a>
+      {% endif %}
+   {% endfor %}
+
+
+</div>
+
+{% endblock %}

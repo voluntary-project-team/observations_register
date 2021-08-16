@@ -11,8 +11,11 @@
 
   <body>
 
-    {% include 'header.html' %}
-
+    {% if user.is_authenticated %}
+        {% include 'auth-header.html' %}
+     {% else %}
+        {% include 'anon-header.html' %}
+     {% endif %}
 
      {% block content %} {% endblock %}
 
