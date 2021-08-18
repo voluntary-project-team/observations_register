@@ -13,11 +13,13 @@
    <table>
       <tr>
          <td><h4>{{ patient.fullname }}</h4></td>
+         <td><h4>{{ patient.id }}</h4></td>
          <td>
             {% for group_for in request.user.groups.all %}
                {% if group_for.name == 'Operators' %}
                   <a href="" class='btn btn-blue'>Изменить</a>
-                  <a href="" class='btn btn-blue'>Удалить</a>
+                  <a href="#" onclick="confirm_delete('{% url 'delete' patient.id %}');"
+                     class='btn btn-blue'>Удалить</a>
                {% elif group_for.name == 'Analysts' %}
                   <a href="" class='btn btn-blue'>Подробнее</a>
                {% endif %}
@@ -35,5 +37,14 @@
 
 
 </div>
+
+<script>
+function confirm_delete(url){
+    var r = confirm("Вы уверены, что хотите удалить выбранного пациента?");
+    if (r == true) {
+        window.location.href=url;
+    }
+    }
+</script>
 
 {% endblock %}

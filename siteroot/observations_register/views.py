@@ -13,11 +13,6 @@ from .decorators import anonymous_required
 from django.utils.decorators import method_decorator
 from django.http import HttpResponseRedirect
 
-#@method_decorator(anonymous_required, name='dispatch')
-class IndexView(TemplateView):
-    ''' Display index page '''
-    template_name = f'index.html'
-
 class AccountLoginView(LoginView):
     ''' Display the login form '''
     form_class = LoginForm
@@ -41,3 +36,10 @@ class PatientsDetailView(ListView):
 
     #def get_object(self):
     #    return self.request.user
+
+def delete_patient(request, patient_id=None):
+    ''' Patient deletion function '''
+    patient_to_delete = Patient.objects.get(id=patient_id)
+    patient_to_delete.delete()
+    return HttpResponseRedirect(reverse('patients-detail'))
+

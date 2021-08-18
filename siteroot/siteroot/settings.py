@@ -136,7 +136,7 @@ AUTH_USER_MODEL = 'auth.User'
 
 
 # The named URL pattern where requests are redirected for index page.
-INDEX_URL = 'index'
+INDEX_URL = 'account-login'
 
 # The named URL pattern where requests are redirected for login.
 # Used in login_required decorator.
@@ -147,9 +147,8 @@ LOGIN_URL = 'account-login'
 LOGIN_REDIRECT_URL = 'patients-redirect'
 
 # The names URL pattern used by django built-in LogoutView.
-LOGOUT_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'account-login'
 
 STRONGHOLD_PUBLIC_NAMED_URLS = (
-    'index',
     'account-login',
 )
