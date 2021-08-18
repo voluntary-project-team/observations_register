@@ -31,7 +31,17 @@
 
    {% for group_for in request.user.groups.all %}
       {% if group_for.name == 'Operators' %}
-         <a href="" class='btn btn-blue'>Добавить нового пациента</a>
+         <div class="container">
+            <div class="heading">
+               <h3>Новый пациент:</h3>
+            </div>
+            <form  action="{% url 'patients-detail' %}" method="POST" >
+               {% csrf_token %}
+               {{ form.as_p }}
+               <button type="submit" class="btn btn-blue">Сохранить</button>
+            </form>
+         </div>
+
       {% endif %}
    {% endfor %}
 

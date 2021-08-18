@@ -64,5 +64,6 @@ class Questionnaire(models.Model):
     inclusions = models.BooleanField(null=True)
     elem_symmetry = models.BooleanField(null=True)
 
-
+    def __str__(self):
+        return self.patient.fullname + " " + str(self.date_of_visit)
 
