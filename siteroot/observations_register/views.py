@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.views.generic.base import TemplateView
 from django.contrib.auth.views import LoginView, LogoutView
 from .forms import LoginForm, PatientCreateForm
@@ -6,12 +5,7 @@ from django.views.generic import RedirectView, ListView
 from django.urls import reverse, reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.edit import CreateView
-from django.views.generic.edit import UpdateView, DeleteView
-from django.views.generic.detail import DetailView
-from .models import Patient, Questionnaire
-from django.contrib import messages
-from .decorators import anonymous_required
-from django.utils.decorators import method_decorator
+from .models import Patient
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 

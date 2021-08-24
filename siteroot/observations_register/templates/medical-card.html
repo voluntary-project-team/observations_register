@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
-{% block title %} Медкарта {{ patient.fullname}} {% endblock %}
+{% block title %} Медкарта {{ patient.fullname }} {% endblock %}
 
 {% block content %}
 
 <div class="container">
-    <h2>Пациент - {{ patient.fullname}}</h2>
+    <h2>Пациент - {{ patient.fullname }}</h2>
 
     <h3>Основная информация:</h3>
     <table>
@@ -92,7 +92,15 @@
             {% endif %}
         {% endfor%}
 
+    {% endfor %} <!-- for questionnaires  -->
+
+
+    {% for group_for in request.user.groups.all %}
+        {% if group_for.name == 'Operators' %}
+            <a href="" class='btn btn-blue'>Добавить анкету</a>
+        {% endif %}
     {% endfor %}
+
 </div>
 
 {% endblock %}
