@@ -8,11 +8,12 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import UpdateView, DeleteView
 from django.views.generic.detail import DetailView
-from .models import Patient
+from .models import Patient, Questionnaire
 from django.contrib import messages
 from .decorators import anonymous_required
 from django.utils.decorators import method_decorator
 from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404
 
 
 class AccountLoginView(LoginView):
@@ -52,4 +53,21 @@ def delete_patient(request, patient_id=None):
     patient_to_delete = Patient.objects.get(id=patient_id)
     patient_to_delete.delete()
     return HttpResponseRedirect(reverse('patients-detail'))
+
+
+class MedicalCardDetailView(TemplateView):
+    ''' Display medical card of patient '''
+    template_name = f'medical-card.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        patient_id = self.kwargs['patient_id']
+        patient = get_object_or_404(Patient, id=patient_id)
+        context['patient'] = patient
+        return context
+
+
+
+
+
 

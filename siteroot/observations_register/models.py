@@ -17,6 +17,11 @@ class Patient(models.Model):
     def __str__(self):
         return self.fullname
 
+    def get_questionnaires(self):
+        if not hasattr(self, '_questionnaires'):
+            self._questionnaires = self.questionnaire_set.all()
+        return self._questionnaires
+
 
 class Questionnaire(models.Model):
     FRECKLES_CHOICES = (('МНОГО', 'Много'), ('УМЕРЕННО', 'Умеренно'),
@@ -54,9 +59,9 @@ class Questionnaire(models.Model):
     sunscreen_using = models.BooleanField()
     neoplasm_appearance = models.CharField(max_length=16, choices=NEO_APPEAR_CHOICES)
     neoplasm_location = models.CharField(max_length=23, choices=NEO_LOC_CHOICES)
+    skin_tumors_in_fam = models.BooleanField()
 
     #fields are optional
-    skin_tumors_in_fam = models.BooleanField(null=True)
     elem_size = models.PositiveSmallIntegerField(null=True, blank=True)
     elem_area = models.PositiveSmallIntegerField(null=True, blank=True)
     elem_borders = models.CharField(max_length=8, choices=ELEM_BORDERS_CHOICES, null=True, blank=True)
