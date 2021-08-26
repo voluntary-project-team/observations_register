@@ -4,7 +4,7 @@ from .forms import LoginForm, PatientCreateForm
 from django.views.generic import RedirectView, ListView
 from django.urls import reverse, reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView 
 from .models import Patient
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
@@ -60,8 +60,20 @@ class MedicalCardDetailView(TemplateView):
         context['patient'] = patient
         return context
 
+class PatientUpdateView(SuccessMessageMixin, UpdateView):
+    ''' Display the profile update form '''
+    model = Patient
+    form_class = PatientCreateForm
+    template_name = f'patient-update.html'
 
+    def form_valid(self, form):
+        return super(PatientUpdateView, self).form_valid(form)
+    
+    def get_success_url(self):
+        patient_id = self.kwargs['patient_id']
+        return reverse_lazy('medical-card', args=[patient_id])
 
-
-
-
+    def get_object(self):
+        patient_id = self.kwargs['patient_id']
+        patient = get_object_or_404(Patient, id=patient_id)
+        return patient
