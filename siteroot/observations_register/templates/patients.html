@@ -1,59 +1,43 @@
-{% extends 'base.html' %}
-
-{% load static %}
-
-{% block title %} Список пациентов {% endblock %}
-
-
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block title %} Список пациентов {% endblock %} {% block content %}
 <div class="container">
 
-   <h3>Список пациентов:</h3>
-   {% for patient in patients %}
-   <table>
-      <tr>
-         <td><h4>{{ patient.fullname }}</h4></td>
-         <td><h4>{{ patient.id }}</h4></td>
-         <td>
-            {% for group_for in request.user.groups.all %}
-               {% if group_for.name == 'Operators' %}
-                  <a href="{% url 'medical-card' patient.id %}" class='btn btn-blue'>Изменить</a>
-                  <a href="#" onclick="confirm_delete('{% url 'delete' patient.id %}');"
-                     class='btn btn-blue'>Удалить</a>
-               {% elif group_for.name == 'Analysts' %}
-                  <a href="{% url 'medical-card' patient.id %}" class='btn btn-blue'>Подробнее</a>
-               {% endif %}
-            {% endfor %}
-         </td>
-      </tr>
-   </table>
-   {% endfor %}
+    <h3>Список пациентов:</h3>
+    {% for patient in patients %}
+    <table>
+        <tr>
+            <td>
+                <h4>{{ patient.fullname }}</h4>
+            </td>
+            <td>
+                {% for group_for in request.user.groups.all %} {% if group_for.name == 'Operators' %}
+                <a href="{% url 'medical-card' patient.id %}" class='btn btn-blue'>Изменить</a>
+                <a href="#" onclick="confirm_delete('{% url 'delete' patient.id %}');" class='btn btn-blue'>Удалить</a> {% elif group_for.name == 'Analysts' %}
+                <a href="{% url 'medical-card' patient.id %}" class='btn btn-blue'>Подробнее</a> {% endif %} {% endfor %}
+            </td>
+        </tr>
+    </table>
+    {% endfor %} {% for group_for in request.user.groups.all %} {% if group_for.name == 'Operators' %}
+    <div class="container">
+        <div class="heading">
+            <h3>Новый пациент:</h3>
+        </div>
+        <form action="{% url 'patients-detail' %}" method="POST">
+            {% csrf_token %} {{ form.as_p }}
+            <button type="submit" class="btn btn-blue">Сохранить</button>
+        </form>
+    </div>
 
-   {% for group_for in request.user.groups.all %}
-      {% if group_for.name == 'Operators' %}
-         <div class="container">
-            <div class="heading">
-               <h3>Новый пациент:</h3>
-            </div>
-            <form  action="{% url 'patients-detail' %}" method="POST" >
-               {% csrf_token %}
-               {{ form.as_p }}
-               <button type="submit" class="btn btn-blue">Сохранить</button>
-            </form>
-         </div>
-
-      {% endif %}
-   {% endfor %}
+    {% endif %} {% endfor %}
 
 
 </div>
 
 <script>
-function confirm_delete(url){
-    var r = confirm("Вы уверены, что хотите удалить выбранного пациента?");
-    if (r == true) {
-        window.location.href=url;
-    }
+    function confirm_delete(url) {
+        var r = confirm("Вы уверены, что хотите удалить выбранного пациента?");
+        if (r == true) {
+            window.location.href = url;
+        }
     }
 </script>
 
