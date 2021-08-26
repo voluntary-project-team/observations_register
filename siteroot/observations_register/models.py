@@ -66,8 +66,8 @@ class Questionnaire(models.Model):
     elem_area = models.PositiveSmallIntegerField(null=True, blank=True)
     elem_borders = models.CharField(max_length=8, choices=ELEM_BORDERS_CHOICES, null=True, blank=True)
     elem_color = models.CharField(max_length=10, choices=ELEM_COLOR_CHOICES, null=True, blank=True)
-    inclusions = models.BooleanField(null=True)
-    elem_symmetry = models.BooleanField(null=True)
+    inclusions = models.BooleanField(null=True, blank=True)
+    elem_symmetry = models.BooleanField(null=True, blank=True)
 
     def __str__(self):
         return self.patient.fullname + " " + str(self.date_of_visit)

@@ -19,8 +19,8 @@
         </tr>
     </table>
 
-    <h1>Изменение данных пациента</h1>
-    <form action="patient-update" method="post">
+    <h1>Добавление анкеты пациента</h1>
+    <form action="create-questionnaire" method="post">
         {% csrf_token %} {{ form.as_p }}
         <button type="submit" class="btn btn-blue">Сохранить</button>
     </form>
