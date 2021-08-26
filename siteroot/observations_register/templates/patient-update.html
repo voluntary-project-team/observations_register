@@ -1,7 +1,17 @@
-{% extends 'base.html' %} {% block content %}
-<h1>Edit post</h1>
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} Изменить данные {% endblock %}
+
+{% block content %}
+
+<div class="container">
+<h2>Редактировать информацию о пациенте</h2>
 <form action="patient-update" method="post">
-    {% csrf_token %} {{ form.as_p }}
-    <input type="submit" value="Update" />
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-blue">Сохранить</button>
 </form>
+</div>
 {% endblock content %}

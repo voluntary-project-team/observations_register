@@ -61,7 +61,7 @@ class MedicalCardDetailView(TemplateView):
         return context
 
 class PatientUpdateView(SuccessMessageMixin, UpdateView):
-    ''' Display the profile update form '''
+    ''' Display the patient update form '''
     model = Patient
     form_class = PatientCreateForm
     template_name = f'patient-update.html'
