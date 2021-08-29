@@ -106,6 +106,12 @@
         </tr>
     </table>
 
+    <h4>Решение врача:</h4>
+        <p>
+            1. {{ questionnaire.doc_decision }}<br>
+            2. Повторная явка: {{ questionnaire.reappearance }}
+        </p>
+
     {% for group_for in request.user.groups.all %}
         {% if group_for.name == 'Operators' %}
             <a href="#" onclick="confirm_delete('{% url 'delete-questionnaire' patient.id questionnaire.id %}');" class='btn btn-blue'>Удалить</a>

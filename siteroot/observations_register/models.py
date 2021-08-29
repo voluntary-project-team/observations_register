@@ -23,6 +23,7 @@ class Patient(models.Model):
         return self._questionnaires
 
 
+
 class Questionnaire(models.Model):
     FRECKLES_CHOICES = (('Много', 'Много'), ('Умеренно', 'Умеренно'),
                         ('Единичные', 'Единичные'), ('Нет', 'Нет'))
@@ -45,6 +46,12 @@ class Questionnaire(models.Model):
     ELEM_BORDERS_CHOICES = (('Четкие', 'Четкие'), ('Нечеткие', 'Нечеткие'))
     ELEM_COLOR_CHOICES = (('Красный', 'Красный'), ('Бежевый', 'Бежевый'),
                           ('Коричневый', 'Коричневый'), ('Черный', 'Черный'))
+    DOC_DECISION_CHOICES = (('Взять гистологическое исследование', 'Взять гистологическое исследование'),
+                            ('Провести иссечение элемента', 'Провести иссечение элемента'))
+    REAPPEARANCE_CHOICES = (('Без повторной явки', 'Без повторной явки'),
+                            ('1 мес', '1 мес'), ('3 мес', '3 мес'),
+                            ('6 мес', '6 мес'), ('1 год', '1 год'))
+
 
     #fields are required
     date_of_visit = models.DateField(auto_now=False, auto_now_add=False)
@@ -68,6 +75,8 @@ class Questionnaire(models.Model):
     elem_color = models.CharField(max_length=10, choices=ELEM_COLOR_CHOICES, null=True, blank=True)
     inclusions = models.BooleanField(null=True, blank=True)
     elem_symmetry = models.BooleanField(null=True, blank=True)
+    doc_decision = models.CharField(max_length=34, choices=DOC_DECISION_CHOICES, null=True, blank=True)
+    reappearance = models.CharField(max_length=18, choices=REAPPEARANCE_CHOICES, null=True, blank=True)
 
     def __str__(self):
         return self.patient.fullname + " " + str(self.date_of_visit)
