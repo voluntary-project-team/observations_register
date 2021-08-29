@@ -19,8 +19,11 @@
         </tr>
     </table>
 
-    {% for group_for in request.user.groups.all %} {% if group_for.name == 'Operators' %}
-    <a href="{% url 'patient-update' patient.id %}" class='btn btn-blue'>Изменить</a> {% endif %} {% endfor%}
+    {% for group_for in request.user.groups.all %}
+        {% if group_for.name == 'Operators' %}
+            <a href="{% url 'patient-update' patient.id %}" class='btn btn-blue'>Изменить</a>
+        {% endif %}
+    {% endfor%}
 
     <h3>Опросники:</h3>
     {% for questionnaire in patient.get_questionnaires %}
@@ -103,13 +106,20 @@
         </tr>
     </table>
 
-    {% for group_for in request.user.groups.all %} {% if group_for.name == 'Operators' %}
-    <a href="#" onclick="confirm_delete('{% url 'delete-questionnaire' patient.id questionnaire.id %}');" class='btn btn-blue'>Удалить</a>{% endif %} {% endfor %} {% endfor %}
-    <!-- for questionnaires  -->
+    {% for group_for in request.user.groups.all %}
+        {% if group_for.name == 'Operators' %}
+            <a href="#" onclick="confirm_delete('{% url 'delete-questionnaire' patient.id questionnaire.id %}');" class='btn btn-blue'>Удалить</a>
+        {% endif %}
+    {% endfor %}
+
+    {% endfor %}<!-- for questionnaires  -->
 
 
-    {% for group_for in request.user.groups.all %} {% if group_for.name == 'Operators' %}
-    <a href="{% url 'create-questionnaire' patient.id %}" class='btn btn-blue'>Добавить анкету</a> {% endif %} {% endfor %}
+    {% for group_for in request.user.groups.all %}
+        {% if group_for.name == 'Operators' %}
+            <a href="{% url 'create-questionnaire' patient.id %}" class='btn btn-blue'>Добавить анкету</a>
+        {% endif %}
+    {% endfor %}
 
 </div>
 

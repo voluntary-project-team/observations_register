@@ -19,7 +19,7 @@
         </tr>
     </table>
 
-    <h1>Изменение данных пациента</h1>
+    <h3>Изменение данных пациента</h3>
     <form action="patient-update" method="post">
         {% csrf_token %} {{ form.as_p }}
         <button type="submit" class="btn btn-blue">Сохранить</button>
