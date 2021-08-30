@@ -105,9 +105,22 @@ def delete_questionnaire(request, patient_id=None, questionnaire_id=None):
     return HttpResponseRedirect(reverse('medical-card', args=[patient_id]))
 
 
-class DataExportView(CSVExportView):
+class PatientExportView(CSVExportView):
     model = Patient
-    fields = '__all__'
-    header = False
+    fields = ('id','gender', 'birthday', 'eyes_col', 'hair_col')
+    header = True
     specify_separator = False
-    filename = 'data-export.csv'
+    filename = 'Patient-export.csv'
+
+class QuestionnaireExportView(CSVExportView):
+    model = Questionnaire
+    fields = ("date_of_visit", "patient", "weight",
+                  "growth", "freckles", "skin_col",
+                  "redness_during_sunburn", "tanning_character", "rest_in_south",
+                  "sunscreen_using", "neoplasm_appearance", "neoplasm_location",
+                  "skin_tumors_in_fam", "elem_size", "elem_area",
+                  "elem_borders", "elem_color", "inclusions", "elem_symmetry",
+                  "doc_decision", "reappearance")
+    header = True
+    specify_separator = False
+    filename = 'Questionnaire-export.csv'

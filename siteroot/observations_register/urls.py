@@ -11,5 +11,6 @@ urlpatterns = [
     path('medical_card/<patient_id>/patient-update', PatientUpdateView.as_view(), name='patient-update'),
     path('medical_card/<patient_id>/create-questionnaire', CreateQuestionnaire.as_view(), name='create-questionnaire'),
     path('delete-questionnaire/<patient_id>/<questionnaire_id>', delete_questionnaire, name='delete-questionnaire'),
-    path('export', DataExportView.as_view(), name='export'),
+    path('export-patient',  PatientExportView.as_view(), name='export_patient'),
+    path('expor-questionnaire',  QuestionnaireExportView.as_view(), name='export_questionnaire'),
 ]
