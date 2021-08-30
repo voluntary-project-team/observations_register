@@ -8,7 +8,7 @@ from django.views.generic.edit import CreateView, UpdateView
 from .models import Patient, Questionnaire
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
-
+from csv_export.views import CSVExportView
 
 class AccountLoginView(LoginView):
     ''' Display the login form '''
@@ -103,3 +103,11 @@ def delete_questionnaire(request, patient_id=None, questionnaire_id=None):
     questionnaire_to_delete = Questionnaire.objects.get(id=questionnaire_id)
     questionnaire_to_delete.delete()
     return HttpResponseRedirect(reverse('medical-card', args=[patient_id]))
+
+
+class DataExportView(CSVExportView):
+    model = Patient
+    fields = '__all__'
+    header = False
+    specify_separator = False
+    filename = 'data-export.csv'
