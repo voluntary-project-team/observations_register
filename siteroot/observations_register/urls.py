@@ -1,5 +1,7 @@
 from django.urls import path
 from  .views import *
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', AccountLoginView.as_view(), name='account-login'),
@@ -14,3 +16,6 @@ urlpatterns = [
     path('export-patient',  PatientExportView.as_view(), name='export_patient'),
     path('expor-questionnaire',  QuestionnaireExportView.as_view(), name='export_questionnaire'),
 ]
+
+if settings.DEBUG: # new
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

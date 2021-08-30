@@ -20,7 +20,7 @@
     </table>
 
     <h3>Добавление анкеты пациента</h3>
-    <form action="create-questionnaire" method="post">
+    <form action="create-questionnaire" method="post" enctype="multipart/form-data">
         {% csrf_token %} {{ form.as_p }}
         <button type="submit" class="btn btn-blue">Сохранить</button>
     </form>
