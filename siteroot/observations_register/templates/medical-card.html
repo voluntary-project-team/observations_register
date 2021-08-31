@@ -122,6 +122,7 @@
             </p>
 
 
+
             {% for group_for in request.user.groups.all %}
                 {% if group_for.name == 'Operators' %}
                     <a href="#" onclick="confirm_delete('{% url 'delete-questionnaire' patient.id questionnaire.id %}');" class='btn btn-blue button-delete'>Удалить</a>
@@ -130,6 +131,8 @@
 
         </div>
     {% endfor %}<!-- for questionnaires  -->
+    {% for group_for in request.user.groups.all %} {% if group_for.name == 'Operators' %}
+    <a href="{% url 'create-questionnaire' patient.id %}" class='btn btn-blue'>Добавить анкету</a> {% endif %} {% endfor %}
 
 </div>
 
