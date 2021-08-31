@@ -19,7 +19,9 @@
             </tr>
         </table>
 
+         <div class="button-position">
             <button type="submit" class="btn btn-blue">Сохранить</button>
+         </div>
         </form>
     </div>
 
@@ -43,8 +45,11 @@
             {% endfor %}
         </table>
     </div>
-    <a href="{% url 'export_patient' %}" class='btn btn-blue'>Экспорт Пациентов</a>
-    <a href="{% url 'export_questionnaire' %}" class='btn btn-blue'>Экспорт Анкет</a>
+
+    <div class="button-delete">
+        <a href="{% url 'export_patient' %}" class='btn btn-blue'>Экспорт Пациентов</a>
+        <a href="{% url 'export_questionnaire' %}" class='btn btn-blue'>Экспорт Анкет</a>
+    </div>
 
 </div>
 
