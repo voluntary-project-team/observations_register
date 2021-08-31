@@ -1,36 +1,39 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% load static %} {% block title %} Медкарта {{ patient.fullname }} {% endblock %} {% block content %}
+{% block extrahead %}
+    <link rel="stylesheet" href="{% static 'css/patients.css'%}" type="text/css">
+{% endblock %}
+<div class="main-container">
+    <h2 class="patient-name">Пациент - {{ patient.fullname }}</h2>
 
-{% block title %} Медкарта {{ patient.fullname }} {% endblock %}
+    <h3 class="patient-headers">Основная информация:</h3>
+    <div class="table-ifo">
+         <table>
+            <tr>
+                <th class="border-bottom" width="200px">Пол</th>
+                <th class="border-bottom" width="200px">Дата рождения</th>
+                <th class="border-bottom" width="200px">Цвет глаз</th>
+                <th class="border-bottom" width="200px">Цвет волос</th>
+            </tr>
+            <tr>
+                <td class="border-bottom">{{ patient.gender }}</td>
+                <td class="border-bottom">{{ patient.birthday }}</td>
+                <td class="border-bottom">{{ patient.eyes_col }}</td>
+                <td class="border-bottom">{{ patient.hair_col }}</td>
+            </tr>
+        </table>
+    </div>
 
-{% block content %}
+    <div class="button-position">
+        {% for group_for in request.user.groups.all %} {% if group_for.name == 'Operators' %}
+        <a href="{% url 'patient-update' patient.id %}" class='btn btn-blue'>Изменить</a> {% endif %} {% endfor%}
 
-<div class="container">
-    <h2>Пациент - {{ patient.fullname }}</h2>
+        {% for group_for in request.user.groups.all %} {% if group_for.name == 'Operators' %}
+        <a href="{% url 'create-questionnaire' patient.id %}" class='btn btn-blue'>Добавить анкету</a> {% endif %} {% endfor %}
+    </div>
 
-    <h3>Основная информация:</h3>
-    <table>
-        <tr>
-            <th class="border-bottom" width="200px">Пол</th>
-            <th class="border-bottom" width="200px">Дата рождения</th>
-            <th class="border-bottom" width="200px">Цвет глаз</th>
-            <th class="border-bottom" width="200px">Цвет волос</th>
-        </tr>
-        <tr>
-            <td class="border-bottom">{{ patient.gender }}</td>
-            <td class="border-bottom">{{ patient.birthday }}</td>
-            <td class="border-bottom">{{ patient.eyes_col }}</td>
-            <td class="border-bottom">{{ patient.hair_col }}</td>
-        </tr>
-    </table>
-
-    {% for group_for in request.user.groups.all %}
-        {% if group_for.name == 'Operators' %}
-            <a href="" class='btn btn-blue'>Изменить</a>
-        {% endif %}
-    {% endfor%}
-
-    <h3>Опросники:</h3>
+    <h3 class="patient-headers">Опросники:</h3>
     {% for questionnaire in patient.get_questionnaires %}
+    <div  class="questionnaire">
         <table>
             <tr>
                 <th class="border-bottom" width="500px">Вопрос</th>
@@ -81,26 +84,63 @@
                 <td class="border-bottom">{{ questionnaire.neoplasm_location }}</td>
             </tr>
             <tr>
-                <td class="border-bottom">Были ли случаи кожных опухолей  кожи в Вашей семье?</td>
+                <td class="border-bottom">Были ли случаи кожных опухолей кожи в Вашей семье?</td>
                 <td class="border-bottom">{{ questionnaire.skin_tumors_in_fam }}</td>
             </tr>
+            <tr>
+                <td class="border-bottom">Размер элемента по оси X-Y и мм</td>
+                <td class="border-bottom">{{ questionnaire.elem_size }}</td>
+            </tr>
+            <tr>
+                <td class="border-bottom">Общая площадь элемента в мм</td>
+                <td class="border-bottom">{{ questionnaire.elem_area }}</td>
+            </tr>
+            <tr>
+                <td class="border-bottom">Границы элемента</td>
+                <td class="border-bottom">{{ questionnaire.elem_borders }}</td>
+            </tr>
+            <tr>
+                <td class="border-bottom">Преобладающий цвет элемента</td>
+                <td class="border-bottom">{{ questionnaire.elem_color }}</td>
+            </tr>
+            <tr>
+                <td class="border-bottom">Наличие включений</td>
+                <td class="border-bottom">{{ questionnaire.inclusions }}</td>
+            </tr>
+            <tr>
+                <td class="border-bottom">Симметричность элемента</td>
+                <td class="border-bottom">{{ questionnaire.elem_symmetry }}</td>
+            </tr>
         </table>
+    </div>
 
-        {% for group_for in request.user.groups.all %}
-            {% if group_for.name == 'Operators' %}
-                <a href="" class='btn btn-blue'>Изменить</a>
-            {% endif %}
-        {% endfor%}
+        <div class="decision">
+            <h4>Решение врача:</h4>
+            <p>
+                1. {{ questionnaire.doc_decision }}<br>
+                2. Повторная явка: {{ questionnaire.reappearance }}
+            </p>
 
-    {% endfor %} <!-- for questionnaires  -->
 
+            {% for group_for in request.user.groups.all %}
+                {% if group_for.name == 'Operators' %}
+                    <a href="#" onclick="confirm_delete('{% url 'delete-questionnaire' patient.id questionnaire.id %}');" class='btn btn-blue button-delete'>Удалить</a>
+                {% endif %}
+            {% endfor %}
 
-    {% for group_for in request.user.groups.all %}
-        {% if group_for.name == 'Operators' %}
-            <a href="" class='btn btn-blue'>Добавить анкету</a>
-        {% endif %}
-    {% endfor %}
+        </div>
+    {% endfor %}<!-- for questionnaires  -->
 
 </div>
+
+<script>
+    function confirm_delete(url) {
+        var r = confirm("Вы уверены, что хотите удалить опросник для выбранного пациента?");
+        if (r == true) {
+            window.location.href = url;
+        }
+    }
+</script>
+
 
 {% endblock %}
