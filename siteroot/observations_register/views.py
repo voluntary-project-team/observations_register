@@ -80,6 +80,7 @@ class PatientUpdateView(SuccessMessageMixin, UpdateView):
         patient = get_object_or_404(Patient, id=patient_id)
         return patient
 
+
 class CreateQuestionnaire(SuccessMessageMixin, CreateView):
     ''' Display patients information '''
     model = Questionnaire

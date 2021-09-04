@@ -14,7 +14,7 @@ urlpatterns = [
     path('medical_card/<patient_id>/create-questionnaire', CreateQuestionnaire.as_view(), name='create-questionnaire'),
     path('delete-questionnaire/<patient_id>/<questionnaire_id>', delete_questionnaire, name='delete-questionnaire'),
     path('export-patient',  PatientExportView.as_view(), name='export_patient'),
-    path('expor-questionnaire',  QuestionnaireExportView.as_view(), name='export_questionnaire'),
+    path('export-questionnaire',  QuestionnaireExportView.as_view(), name='export_questionnaire'),
     path('import-patient', import_patient, name='import_patient'),
     path('import-questionnare', import_questionnaire, name='import_questionnaire'),
 ]

@@ -25,10 +25,9 @@
 
     <div class="button-position">
         {% for group_for in request.user.groups.all %} {% if group_for.name == 'Operators' %}
-        <a href="{% url 'patient-update' patient.id %}" class='btn btn-blue'>Изменить</a> {% endif %} {% endfor%}
-
-        {% for group_for in request.user.groups.all %} {% if group_for.name == 'Operators' %}
-        <a href="{% url 'create-questionnaire' patient.id %}" class='btn btn-blue'>Добавить анкету</a> {% endif %} {% endfor %}
+        <a href="{% url 'patient-update' patient.id %}" class='btn btn-blue'>Изменить</a>
+        <a href="{% url 'create-questionnaire' patient.id %}" class='btn btn-blue'>Добавить анкету</a>
+        {% endif %} {% endfor %}
     </div>
 
     <h3 class="patient-headers">Опросники:</h3>
@@ -151,7 +150,7 @@
             </p>
         </div>
 
-    <!-- for questionnaires  -->
+
         <div class="button-position">
             {% for group_for in request.user.groups.all %}
                 {% if group_for.name == 'Operators' %}
@@ -161,10 +160,10 @@
         </div>
     <br>
     {% endfor %}<!-- for questionnaires  -->
-    <form method="POST" action="{% url 'import_questionnaire' %}" enctype="multipart/form-data" class="import"> {% csrf_token %}
-        <input type="file" name="questionnaire_file" class='input-menu'> <br>
-        <button type="submit" class='btn btn-blue'>Импорт Анкет</button>
-    </form>
+
+    <a class='btn btn-blue
+' href="{% url 'patients-detail' %}">К списку пациентов</a>
+
 </div>
 
 <script>

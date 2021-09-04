@@ -2,6 +2,11 @@ from django.db import models
 
 
 class Patient(models.Model):
+    class Meta:
+        permissions = (
+            ('export_permission', 'Can export data'),
+        )
+
     GENDER_CHOICES = (('М', 'Мужской'), ('Ж', 'Женский'))
     EYES_CHOICES = (('Голубой', 'Голубой'), ('Серый', 'Серый'),
                     ('Зеленый', 'Зеленый'), ('Карий', 'Карий'))
@@ -23,8 +28,12 @@ class Patient(models.Model):
         return self._questionnaires
 
 
-
 class Questionnaire(models.Model):
+    class Meta:
+        permissions = (
+            ('export_permission', 'Can export data'),
+        )
+
     FRECKLES_CHOICES = (('Много', 'Много'), ('Умеренно', 'Умеренно'),
                         ('Единичные', 'Единичные'), ('Нет', 'Нет'))
     SKIN_CHOICES = (('Очень белый', 'Очень белый'), ('Белый', 'Белый'),

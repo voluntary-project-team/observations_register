@@ -47,16 +47,28 @@
     </div>
 
     <div class="button-many">
-        <a href="{% url 'export_patient' %}" class='btn btn-blue'>Экспорт Пациентов</a>
-        <a href="{% url 'export_questionnaire' %}" class='btn btn-blue'>Экспорт Анкет</a>
+        {% for group_for in request.user.groups.all %} {% if group_for.name == 'Exporters' %}
+        <a href="{% url 'export_patient' %}" class='btn btn-blue'>Экспорт данных пациентов</a>
+        <a href="{% url 'export_questionnaire' %}" class='btn btn-blue'>Экспорт анкет</a>
+        {% endif %}
+        {% endfor %}
         <form method="POST" action="{% url 'import_patient' %}" enctype="multipart/form-data"> {% csrf_token %}
     </form>
     </div>
 
+    {% for group_for in request.user.groups.all %} {% if group_for.name == 'Operators' %}
     <div class="import">
         <input type="file" name="patient_file" class='input-menu'> <br>
-        <button type="submit" class='btn btn-blue'>Импорт Пациентов</button>
+        <button type="submit" class='btn btn-blue'>Импорт данных пациентов</button>
     </div>
+
+    <form method="POST" action="{% url 'import_questionnaire' %}" enctype="multipart/form-data" class="import"> {% csrf_token %}
+        <input type="file" name="questionnaire_file" class='input-menu'> <br>
+        <button type="submit" class='btn btn-blue'>Импорт Анкет</button>
+    </form>
+    {% endif %}
+    {% endfor %}
+
 </div>
 
 <script>
