@@ -3,8 +3,7 @@
 {% block title %} Вход {% endblock %}
 
 {% block content %}
-  <section class="get-info">
-    <div class="login-box">
+  <div class="get-info">
       <form class="get-info-form" action="{% url 'account-login' %}" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
@@ -12,6 +11,5 @@
           Войти
         </button>
       </form>
-    </div>
-  </section>
+  </div>
 {% endblock %}
