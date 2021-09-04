@@ -9,6 +9,8 @@ from .models import Patient, Questionnaire
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from csv_export.views import CSVExportView
+from django.contrib import messages
+from .uploadings import UploadingPatient, UploadingQuestionnaire
 
 class AccountLoginView(LoginView):
     ''' Display the login form '''
@@ -124,3 +126,22 @@ class QuestionnaireExportView(CSVExportView):
     header = True
     specify_separator = False
     filename = 'Questionnaire-export.csv'
+
+def import_patient(request):
+    #if request.POST:
+    file = request.FILES.get('patient_file',False)
+    uploading_file = UploadingPatient({"file":file})
+    if uploading_file:
+        messages.success(request,'Успешная загрузка')
+    else:
+        messages.error(request, 'Ошибка при загрузке')
+    return HttpResponseRedirect(reverse('patients-detail'))
+def import_questionnaire(request, patient_id=None):
+    #if request.POST:
+    file = request.FILES.get('questionnaire_file',False)
+    uploading_file = UploadingQuestionnaire({"file":file})
+    if uploading_file:
+        messages.success(request,'Успешная загрузка')
+    else:
+        messages.error(request, 'Ошибка при загрузке')
+    return HttpResponseRedirect(reverse('patients-detail'))

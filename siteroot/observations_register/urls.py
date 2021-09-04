@@ -15,6 +15,8 @@ urlpatterns = [
     path('delete-questionnaire/<patient_id>/<questionnaire_id>', delete_questionnaire, name='delete-questionnaire'),
     path('export-patient',  PatientExportView.as_view(), name='export_patient'),
     path('expor-questionnaire',  QuestionnaireExportView.as_view(), name='export_questionnaire'),
+    path('import-patient', import_patient, name='import_patient'),
+    path('import-questionnare', import_questionnaire, name='import_questionnaire'),
 ]
 
 if settings.DEBUG: # new

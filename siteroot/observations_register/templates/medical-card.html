@@ -161,7 +161,10 @@
         </div>
     <br>
     {% endfor %}<!-- for questionnaires  -->
-
+    <form method="POST" action="{% url 'import_questionnaire' %}" enctype="multipart/form-data"> {% csrf_token %}
+        <input type="file" name="questionnaire_file">
+        <button type="submit" class='btn btn-blue'>Импорт Анкет</button>
+    </form>
 </div>
 
 <script>
