@@ -49,11 +49,11 @@
     <div class="button-delete">
         <a href="{% url 'export_patient' %}" class='btn btn-blue'>Экспорт Пациентов</a>
         <a href="{% url 'export_questionnaire' %}" class='btn btn-blue'>Экспорт Анкет</a>
-    </div>
-    <form method="POST" action="{% url 'import_patient' %}" enctype="multipart/form-data"> {% csrf_token %}
+        <form method="POST" action="{% url 'import_patient' %}" enctype="multipart/form-data"> {% csrf_token %}
         <input type="file" name="patient_file">
         <button type="submit" class='btn btn-blue'>Импорт Пациентов</button>
     </form>
+    </div>
 </div>
 
 <script>
