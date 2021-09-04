@@ -57,10 +57,10 @@
     </div>
 
     {% for group_for in request.user.groups.all %} {% if group_for.name == 'Operators' %}
-    <div class="import">
+    <form method="POST" action="{% url 'import_patient' %}" enctype="multipart/form-data" class="import"> {% csrf_token %}
         <input type="file" name="patient_file" class='input-menu'> <br>
-        <button type="submit" class='btn btn-blue'>Импорт данных пациентов</button>
-    </div>
+        <button type="submit" class='btn btn-blue'>Импорт Анкет</button>
+    </form>
 
     <form method="POST" action="{% url 'import_questionnaire' %}" enctype="multipart/form-data" class="import"> {% csrf_token %}
         <input type="file" name="questionnaire_file" class='input-menu'> <br>
