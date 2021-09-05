@@ -38,8 +38,11 @@
 
 .patients-table td{
     padding: 10px;
-    border: 3px solid #00114a;
     font-size: 18px;
+}
+
+.patients table tr{
+    border: 3px solid #00114a;
 }
 
 .patients-table tr:nth-child(odd){
