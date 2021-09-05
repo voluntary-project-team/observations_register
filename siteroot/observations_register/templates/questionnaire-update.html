@@ -1,7 +1,7 @@
-{% extends 'base.html' %} {% load static %} {% block title %} Медкарта {{ patient.fullname }} {% endblock %} {% block content %} {% block extrahead %}
+{% extends 'base.html' %} {% load static %} {% block title %} Медкарта {{ questionnaire.patient.fullname }} {% endblock %} {% block content %} {% block extrahead %}
 <link rel="stylesheet" href="{% static 'css/patients.css'%}" type="text/css"> {% endblock %}
 <div class="main-container">
-    <h2 class="patient-name">Пациент - {{ patient.fullname }}</h2>
+    <h2 class="patient-name">Пациент - {{ questionnaire.patient.fullname }}</h2>
 
     <h3 class="patient-headers">Основная информация:</h3>
     <div class="table-ifo">
@@ -13,17 +13,17 @@
                 <th class="border-bottom" width="200px">Цвет волос</th>
             </tr>
             <tr>
-                <td class="border-bottom">{{ patient.gender }}</td>
-                <td class="border-bottom">{{ patient.birthday }}</td>
-                <td class="border-bottom">{{ patient.eyes_col }}</td>
-                <td class="border-bottom">{{ patient.hair_col }}</td>
+                <td class="border-bottom">{{ questionnaire.patient.gender }}</td>
+                <td class="border-bottom">{{ questionnaire.patient.birthday }}</td>
+                <td class="border-bottom">{{ questionnaire.patient.eyes_col }}</td>
+                <td class="border-bottom">{{ questionnaire.patient.hair_col }}</td>
             </tr>
         </table>
     </div>
 
-    <h3 class="patient-headers">Добавление анкеты пациента</h3>
-    <form action="create-questionnaire" method="post" enctype="multipart/form-data" class="create-que"> {% csrf_token %}
-
+    <h2 class="patient-headers">Изменение данных опросника</h2>
+    <form action="questionnaire-update" method="post" enctype="multipart/form-data" class="change-pat">
+        {% csrf_token %}
         <table class="profile-table">
             {% for field in form %}
             <tr>
@@ -32,11 +32,11 @@
             </tr>
             {% endfor %}
         </table>
-
         <div class="button-position">
             <button type="submit" class="btn btn-blue">Сохранить</button>
         </div>
     </form>
+
 
 </div>
 

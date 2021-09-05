@@ -1,13 +1,11 @@
-{% extends 'base.html' %} {% load static %} {% block title %} Медкарта {{ patient.fullname }} {% endblock %} {% block content %}
-{% block extrahead %}
-    <link rel="stylesheet" href="{% static 'css/patients.css'%}" type="text/css">
-{% endblock %}
+{% extends 'base.html' %} {% load static %} {% block title %} Медкарта {{ patient.fullname }} {% endblock %} {% block content %} {% block extrahead %}
+<link rel="stylesheet" href="{% static 'css/patients.css'%}" type="text/css"> {% endblock %}
 <div class="main-container">
     <h2 class="patient-name">Пациент - {{ patient.fullname }}</h2>
 
     <h3 class="patient-headers">Основная информация:</h3>
     <div class="table-ifo">
-         <table>
+        <table>
             <tr>
                 <th class="border-bottom" width="200px">Пол</th>
                 <th class="border-bottom" width="200px">Дата рождения</th>
@@ -26,13 +24,12 @@
     <div class="button-position">
         {% for group_for in request.user.groups.all %} {% if group_for.name == 'Operators' %}
         <a href="{% url 'patient-update' patient.id %}" class='btn btn-blue'>Изменить</a>
-        <a href="{% url 'create-questionnaire' patient.id %}" class='btn btn-blue'>Добавить анкету</a>
-        {% endif %} {% endfor %}
+        <a href="{% url 'create-questionnaire' patient.id %}" class='btn btn-blue'>Добавить анкету</a> {% endif %} {% endfor %}
     </div>
 
     <h3 class="patient-headers">Опросники:</h3>
     {% for questionnaire in patient.get_questionnaires %}
-    <div  class="questionnaire">
+    <div class="questionnaire">
         <table>
             <tr>
                 <th class="border-bottom" width="500px">Вопрос</th>
@@ -128,7 +125,7 @@
             </tr>
             <tr>
                 <td class="border-bottom">Эталонный снимок</td>
-                {% if questionnaire.neo_img %}
+                {% if questionnaire.ref_img %}
                 <td class="border-bottom">
                     <img src="/media/{{ questionnaire.ref_img }}" alt="{{ questionnaire.ref_img }}" style="max-height:300px">
                 </td>
@@ -138,28 +135,25 @@
                 </td>
                 {% endif %}
             </tr>
-    </table>
+        </table>
 
     </div>
 
-        <div class="decision">
-            <h4>Решение врача:</h4>
-            <p>
-                1. {{ questionnaire.doc_decision }}<br>
-                2. Повторная явка: {{ questionnaire.reappearance }}
-            </p>
-        </div>
+    <div class="decision">
+        <h4>Решение врача:</h4>
+        <p>
+            1. {{ questionnaire.doc_decision }}<br> 2. Повторная явка: {{ questionnaire.reappearance }}
+        </p>
+    </div>
 
 
-        <div class="button-position">
-            {% for group_for in request.user.groups.all %}
-                {% if group_for.name == 'Operators' %}
-                    <a href="#" onclick="confirm_delete('{% url 'delete-questionnaire' patient.id questionnaire.id %}');" class='btn btn-blue'>Удалить</a>
-                {% endif %}
-            {% endfor %}
-        </div>
-    <br>
-    {% endfor %}<!-- for questionnaires  -->
+    <div class="button-position">
+        {% for group_for in request.user.groups.all %} {% if group_for.name == 'Operators' %}
+        <a href="#" onclick="confirm_delete('{% url 'delete-questionnaire' patient.id questionnaire.id %}');" class='btn btn-blue'>Удалить</a>
+        <a href="{% url 'questionnaire-update' patient.id questionnaire.id %}" class='btn btn-blue'>Изменить</a> {% endif %} {% endfor %}
+    </div>
+    <br> {% endfor %}
+    <!-- for questionnaires  -->
 
     <a class='btn btn-blue
 ' href="{% url 'patients-detail' %}">К списку пациентов</a>
