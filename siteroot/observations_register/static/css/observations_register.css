@@ -28,7 +28,7 @@ body {
 
 header {
   position: relative;
-  height: 330px;
+  height: 250px;
   background-color: #0052A0;
 }
 
@@ -37,6 +37,7 @@ svg {
   bottom: 0;
   width: 100%;
   height: 170px;
+  z-index: 0;
 }
 /* Second header */
 
@@ -49,44 +50,29 @@ svg {
     font-family: Arial, sans-serif;
 }
 
-.head-img {
+.logos{
+    width: 1200px;
+    position: relative;
+    left: 50%;
+    margin-left: -600px;
+    margin-top: 50px;
+}
+
+.logo-style {
   display:inline-block;
-  background-color: #fff;
-  clip-path: polygon(0 0,100% 0,100% 86%,0 100%);
-  padding: 4% 3% 6%;
-  width: 150px;
-  height: 130px;
-}
-
-.img-inside{
-    width: 100%;
-    height: 100%;
-}
-
-.head-ul {
-    vertical-align: middle;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.head-ul li {
-    display: inline-block;
-    margin-left: 5%;
-    vertical-align: middle;
-    font-size: 25px;
-    line-height: 15%;
+  margin-left: 70px;
 }
 
 .head-nav {
-    display: block;
-    float: right;
-    padding-top: 5%;
-    width: 15%;
-    height: 20%;
+    position: relative;
+    top: 50px;
+    left: 620px;
+    font-size: 23px;
+    z-index: 5;
 }
 
 .head-nav a {
+  margin-right: 50px;
   color: #1f2022;
   text-decoration: none;
   color: white;
@@ -256,17 +242,17 @@ svg {
 
 .get-info {
   position: relative;
-  width: 550px;
-  height: 260px;
+  width: 650px;
+  height: 330px;
   margin: 0 auto;
   background: #FFFFFF;
   border-radius: 37px;
-  margin-bottom: 10%;
+  margin-bottom: 130px;
 }
 
 .get-info-form {
   margin: 0 auto;
-  width: 500px;
+  width: 550px;
   padding-top: 2%;
   font-weight: bold;
 }
@@ -275,11 +261,13 @@ svg {
     display: block;
     padding-bottom: 16px;
     width: 500px;
+    font-weight: 700;
+    font-size: 20px;
 }
 
 .get-info-form input {
-    width: 500px;
-    height: 30px;
+    width: 550px;
+    height: 50px;
 }
 
 .get-info-form .title {
@@ -287,8 +275,6 @@ svg {
     padding-right: 20px;
     vertical-align: top;
     text-align: right;
-    font-weight: 700;
-    font-size: 18px;
     line-height: 60px;
     font-family: Arial, sans-serif;
 }

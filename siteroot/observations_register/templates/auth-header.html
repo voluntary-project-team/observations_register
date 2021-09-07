@@ -3,18 +3,9 @@
 <header class="second-head">
     <div class="container">
 
-        <div class="head-img">
-            <a href="{% url 'patients-detail' %}">
-                <img class="img-inside" src="https://www.unisa.edu.au/globalassets/images/logos/logo-unisa-portrait-blue.svg" >
-            </a>
-        </div>
-
         <nav class="head-nav">
-            <ul class="head-ul">
-                <li>
-                    <a href="{% url 'account-logout' %}">Выход</a>
-                </li>
-            </ul>
+            <a href="{% url 'patients-detail' %}">Список пациентов</a>
+            <a href="{% url 'account-logout' %}">Выход</a>
         </nav>
 
     </div>
