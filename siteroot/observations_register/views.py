@@ -80,6 +80,7 @@ class PatientUpdateView(SuccessMessageMixin, UpdateView):
         patient = get_object_or_404(Patient, id=patient_id)
         return patient
 
+
 class CreateQuestionnaire(SuccessMessageMixin, CreateView):
     ''' Display patients information '''
     model = Questionnaire
@@ -145,3 +146,22 @@ def import_questionnaire(request, patient_id=None):
     else:
         messages.error(request, 'Ошибка при загрузке')
     return HttpResponseRedirect(reverse('patients-detail'))
+
+
+class QuestionnaireUpdateView(SuccessMessageMixin, UpdateView):
+    ''' Display the patient update form '''
+    model = Questionnaire
+    form_class = QuestionnaireCreateForm
+    template_name = f'questionnaire-update.html'
+
+    def form_valid(self, form):
+        return super(QuestionnaireUpdateView, self).form_valid(form)
+    
+    def get_success_url(self):
+        patient_id = self.kwargs['patient_id']
+        return reverse_lazy('medical-card', args=[patient_id])
+
+    def get_object(self):
+        questionnaire_id = self.kwargs['questionnaire_id']
+        questionnaire = get_object_or_404(Questionnaire, id=questionnaire_id)
+        return questionnaire

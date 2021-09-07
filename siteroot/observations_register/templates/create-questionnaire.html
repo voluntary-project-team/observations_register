@@ -1,7 +1,5 @@
-{% extends 'base.html' %} {% load static %} {% block title %} Медкарта {{ patient.fullname }} {% endblock %} {% block content %}
-{% block extrahead %}
-    <link rel="stylesheet" href="{% static 'css/patients.css'%}" type="text/css">
-{% endblock %}
+{% extends 'base.html' %} {% load static %} {% block title %} Медкарта {{ patient.fullname }} {% endblock %} {% block content %} {% block extrahead %}
+<link rel="stylesheet" href="{% static 'css/patients.css'%}" type="text/css"> {% endblock %}
 <div class="main-container">
     <h2 class="patient-name">Пациент - {{ patient.fullname }}</h2>
 
@@ -24,13 +22,12 @@
     </div>
 
     <h3 class="patient-headers">Добавление анкеты пациента</h3>
-    <form action="create-questionnaire" method="post" class="create-que">
-        {% csrf_token %}
+    <form action="create-questionnaire" method="post" enctype="multipart/form-data" class="create-que"> {% csrf_token %}
 
         <table class="profile-table">
             {% for field in form %}
             <tr>
-                <td class="que-td que-td-1" > {{ field.label_tag }} </td>
+                <td class="que-td que-td-1"> {{ field.label_tag }} </td>
                 <td class="que-td"> {{ field }} </td>
             </tr>
             {% endfor %}
