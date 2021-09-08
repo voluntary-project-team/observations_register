@@ -98,13 +98,6 @@ svg {
     content: "";
 }
 
-.copyright {
-    float: left;
-    width: 250px;
-    height: 40px;
-    margin-right: 40px;
-}
-
 .footer-social-promo {
     float: left;
     width: 380px;
@@ -230,8 +223,13 @@ svg {
     font-family: Arial, sans-serif;
 }
 
-.border-bottom {
-    padding-bottom: 10px;
-    border-bottom: 1px solid;
-    border-color: #d1d5da;
+.hello{
+    font-size: 25px;
+    color: #1f2022;
+    text-decoration: none;
+    color: white;
+    padding: 50px;
+    padding-left: 270px;
 }
+
+
