@@ -50,13 +50,6 @@ svg {
     font-family: Arial, sans-serif;
 }
 
-.logos{
-    width: 1200px;
-    position: relative;
-    left: 50%;
-    margin-left: -600px;
-    margin-top: 50px;
-}
 
 .logo-style {
   display:inline-block;
@@ -67,7 +60,7 @@ svg {
     position: relative;
     top: 50px;
     left: 620px;
-    font-size: 23px;
+    font-size: 18px;
     z-index: 5;
 }
 
@@ -152,17 +145,6 @@ svg {
     background-image: url("../img/icons/ico-vk-active.jpg");
 }
 
-.social-btn-fb {
-    width: 40px;
-    height: 40px;
-    background-image: url("../img/icons/ico-fb.png");
-    background-repeat: no-repeat;
-}
-
-.social-btn-fb:hover {
-    background-image: url("../img/icons/ico-fb-active.png");
-}
-
 
 /* Buttons */
 
@@ -196,47 +178,6 @@ svg {
     background: #f5cc5d;
     color: #00114a;
 }
-
-
-/* Promo on home page */
-
-.promo {
-    position: relative;
-    width: 450px;
-}
-
-.promo::after {
-    content: "";
-    position: absolute;
-    top: -70px;
-    left: 550px;
-    width: 452px;
-    height: 452px;
-    background-image: url("../img/bg-promo.png");
-    background-repeat: no-repeat;
-}
-
-.promo-title {
-    margin-bottom: 25px;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 40px;
-    line-height: 48px;
-}
-
-.promo p {
-    margin: 0;
-    margin-bottom: 35px;
-    color: #404040;
-    font-size: 18px;
-    line-height: 24px;
-}
-
-.promo .btn {
-    margin-top: 12px;
-    width: 260px;
-}
-
 
 /*Forms*/
 

@@ -115,7 +115,7 @@
                 <td class="border-bottom">Снимок новообразования</td>
                 {% if questionnaire.neo_img %}
                 <td class="border-bottom">
-                    <img src="/media/{{ questionnaire.neo_img }}" alt="{{ questionnaire.neo_img }}" style="max-height:300px">
+                    <img src="/media/{{ questionnaire.neo_img }}" alt="{{ questionnaire.neo_img }}" style="max-height:300px" width="300">
                 </td>
                 {% else %}
                 <td class="border-bottom">
@@ -127,7 +127,7 @@
                 <td class="border-bottom">Эталонный снимок</td>
                 {% if questionnaire.ref_img %}
                 <td class="border-bottom">
-                    <img src="/media/{{ questionnaire.ref_img }}" alt="{{ questionnaire.ref_img }}" style="max-height:300px">
+                    <img src="/media/{{ questionnaire.ref_img }}" alt="{{ questionnaire.ref_img }}" style="max-height:300px" width="300">
                 </td>
                 {% else %}
                 <td class="border-bottom">
