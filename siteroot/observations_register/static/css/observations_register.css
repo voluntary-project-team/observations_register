@@ -52,8 +52,9 @@ svg {
 
 
 .logo-style {
-  display:inline-block;
-  margin-left: 70px;
+  display: inline-block;
+  margin-right: 50px;
+  margin-left: 20px;
 }
 
 .head-nav {
@@ -229,7 +230,7 @@ svg {
     text-decoration: none;
     color: white;
     padding: 50px;
-    padding-left: 200px;
+    padding-left: 20px;
 }
 
 
